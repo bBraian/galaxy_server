@@ -1,15 +1,36 @@
 const clients = require("../../data/fakeData");
 
 function getAll() {
-    return clients;
+    return clients.clients;
 }
 
 function getClientData(clientId) {
-    const clientData = clients.filter(client => client.id == clientId);
-    return clientData;
+    clientId = parseInt(clientId);
+    if(isNaN(clientId)) {
+        throw 'clientId invalid';
+    }
+    const clientData = clients.clients.filter(client => client.id === clientId);
+    if(clientData.length === 0) {
+        return {}
+    }
+    return clientData[0];
+}
+
+function getClientCategories(clientId) {
+    clientId = parseInt(clientId);
+    if(isNaN(clientId)) {
+        throw 'clientId invalid';
+    }
+    const clientCategories = clients.categories.filter(category => category.clientId === clientId);
+    console.log(clientCategories);
+    if(clientCategories.length === 0) {
+        return {}
+    }
+    return clientCategories;
 }
 
 module.exports = {
     getAll,
-    getClientData
+    getClientData,
+    getClientCategories
 }
