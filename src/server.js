@@ -1,11 +1,10 @@
-import express from "express";
-import { clients } from "./fakeData.js";
+const express = require("express");
+const router = require("./router");
 
 const app = express();
 
-app.get('/clients', (req, res) => {
-    res.json(clients);
-})
+app.use(express.json());
+app.use(router);
 
 app.listen(3000, () => {
     console.log('running on 3000');
