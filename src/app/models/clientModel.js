@@ -29,6 +29,19 @@ function getClientCategories(clientId) {
     return clientCategories;
 }
 
+function getClientProducts(clientId) {
+    clientId = parseInt(clientId);
+    if(isNaN(clientId)) {
+        throw 'clientId invalid';
+    }
+    const clientProducts = clients.products.filter(category => category.clientId === clientId);
+    console.log(clientCategories);
+    if(clientCategories.length === 0) {
+        return {}
+    }
+    return clientCategories;
+}
+
 module.exports = {
     getAll,
     getClientData,
