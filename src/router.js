@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.get('/clients/all', clientController.getAll);
 router.get('/clients', clientController.getClientData);
-router.get('/clients/categories', clientController.getClientCategories);
+router.get('/categories', clientController.getClientCategories);
+router.get('/products', clientController.getClientProducts);
 
 module.exports = router;
 
