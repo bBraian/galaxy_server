@@ -34,16 +34,17 @@ function getClientProducts(clientId) {
     if(isNaN(clientId)) {
         throw 'clientId invalid';
     }
-    const clientProducts = clients.products.filter(category => category.clientId === clientId);
-    console.log(clientCategories);
-    if(clientCategories.length === 0) {
+    const clientProducts = clients.products.filter(product => product.clientId === clientId);
+    console.log(clientProducts);
+    if(clientProducts.length === 0) {
         return {}
     }
-    return clientCategories;
+    return clientProducts;
 }
 
 module.exports = {
     getAll,
     getClientData,
-    getClientCategories
+    getClientCategories,
+    getClientProducts
 }
