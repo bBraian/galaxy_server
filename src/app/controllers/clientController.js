@@ -24,9 +24,9 @@ function getClientCategories(req, res) {
 }
 
 function getClientProducts(req, res) {
-    console.log(req);
+    console.log(req)
     try {
-        const products = clientModel.getClientProducts(req.body.clientId);
+        const products = clientModel.getClientProducts(req.query.clientId);
         return res.status(200).json(products);
     } catch(e) {
         return res.status(400).json({"message":e});
