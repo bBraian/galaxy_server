@@ -22,7 +22,6 @@ function getClientCategories(clientId) {
         throw 'clientId invalid';
     }
     const clientCategories = clients.categories.filter(category => category.clientId === clientId);
-    console.log(clientCategories);
     if(clientCategories.length === 0) {
         return {}
     }
@@ -35,16 +34,29 @@ function getClientProducts(clientId) {
         throw 'clientId invalid';
     }
     const clientProducts = clients.products.filter(product => product.clientId === clientId);
-    console.log(clientProducts);
     if(clientProducts.length === 0) {
         return {}
     }
     return clientProducts;
 }
 
+function getOptions(categoryId) {
+    categoryId = parseInt(categoryId);
+    if(isNaN(categoryId)) {
+        throw 'categoryId invalid';
+    }
+    const options = clients.options.filter(option => option.categoryId === categoryId);
+    if(options.length === 0) {
+        return []
+    }
+    console.log(options);
+    return options;
+}
+
 module.exports = {
     getAll,
     getClientData,
     getClientCategories,
-    getClientProducts
+    getClientProducts,
+    getOptions
 }

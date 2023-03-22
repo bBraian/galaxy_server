@@ -5,21 +5,21 @@ const clients = [
 ];
 
 const categories = [
-    { "id": 1, "title": "Todos", "clientId": 1 },
-    { "id": 2, "title": "🍔 Hambúrgueres", "clientId": 1 },
-    { "id": 3, "title": "🍕 Pizzas", "clientId": 1 },
-    { "id": 4, "title": "🌭 Lanches", "clientId": 1 },
-    { "id": 5, "title": "🍟 Fritas", "clientId": 1 },
-    { "id": 6, "title": "🥗 Porções", "clientId": 1 },
-    { "id": 7, "title": "🥟 Pasteis", "clientId": 1 },
-    { "id": 8, "title": "🥤 Bebidas", "clientId": 1 },
-    { "id": 9, "title": "🍺 Cervejas", "clientId": 1 },
-    { "id": 10, "title": "🍷 Vinhos", "clientId": 1 },
-    { "id": 11, "title": "🍸 Drinks", "clientId": 1 },
-    { "id": 12, "title": "Todos", "clientId": 2 },
-    { "id": 13, "title": "🍔 Hambúrgueres", "clientId": 2 },
-    { "id": 14, "title": "🍕 Pizzas", "clientId": 2 },
-    { "id": 15, "title": "🌭 Lanches", "clientId": 2 }
+    { "id": 1, "title": "Todos", "clientId": 1, "default": true },
+    { "id": 2, "title": "🍔 Hambúrgueres", "clientId": 1, "default": false },
+    { "id": 3, "title": "🍕 Pizzas", "clientId": 1, "default": false },
+    { "id": 4, "title": "🌭 Lanches", "clientId": 1, "default": false },
+    { "id": 5, "title": "🍟 Fritas", "clientId": 1, "default": false },
+    { "id": 6, "title": "🥗 Porções", "clientId": 1, "default": false },
+    { "id": 7, "title": "🥟 Pasteis", "clientId": 1, "default": false },
+    { "id": 8, "title": "🥤 Bebidas", "clientId": 1, "default": false },
+    { "id": 9, "title": "🍺 Cervejas", "clientId": 1, "default": false },
+    { "id": 10, "title": "🍷 Vinhos", "clientId": 1, "default": false },
+    { "id": 11, "title": "🍸 Drinks", "clientId": 1, "default": false },
+    { "id": 12, "title": "Todos", "clientId": 2, "default": true },
+    { "id": 13, "title": "🍔 Hambúrgueres", "clientId": 2, "default": false },
+    { "id": 14, "title": "🍕 Pizzas", "clientId": 2, "default": false },
+    { "id": 15, "title": "🌭 Lanches", "clientId": 2, "default": false }
 ];
 
 const products = [

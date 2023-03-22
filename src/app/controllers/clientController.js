@@ -24,10 +24,18 @@ function getClientCategories(req, res) {
 }
 
 function getClientProducts(req, res) {
-    console.log(req)
     try {
         const products = clientModel.getClientProducts(req.query.clientId);
         return res.status(200).json(products);
+    } catch(e) {
+        return res.status(400).json({"message":e});
+    }
+}
+
+function getOptions(req, res) {
+    try {
+        const options = clientModel.getOptions(req.query.categoryId);
+        return res.status(200).json(options);
     } catch(e) {
         return res.status(400).json({"message":e});
     }
@@ -37,5 +45,6 @@ module.exports = {
     getAll,
     getClientData,
     getClientCategories,
-    getClientProducts
+    getClientProducts,
+    getOptions
 }
