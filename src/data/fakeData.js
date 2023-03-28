@@ -1,7 +1,6 @@
 const clients = [
-    {"id": 1, "title": "Galaxy Menu", "logo":"https://i.imgur.com/EyaZoph.png", "background":"https://i.imgur.com/XrwvnNU.png", "url":"galaxymenu" },
-    {"id": 2, "title": "Braian's Bar", "logo":"https://i.imgur.com/EyaZoph.png", "background":"https://i.imgur.com/XrwvnNU.png", "url":"braiansbar" },
-    {"id": 3, "title": "Kelly's Bar", "logo":"https://i.imgur.com/EyaZoph.png", "background":"https://i.imgur.com/XrwvnNU.png", "url":"kellysbar" }
+    {"id": 1, "title": "Braian's Bar", "logo":"https://i.imgur.com/OFXg4Vy.jpg", "background":"https://i.imgur.com/nAQ7YQi.png", "url":"braiansbar" },
+    {"id": 2, "title": "Kelly's Bar", "logo":"https://i.imgur.com/W6Gwp23.jpg", "background":"https://i.imgur.com/LVbbEOf.jpg", "url":"kellysbar" }
 ];
 
 const categories = [
