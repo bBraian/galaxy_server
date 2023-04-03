@@ -4,12 +4,8 @@ function getAll() {
     return clients.clients;
 }
 
-function getClientData(clientId) {
-    clientId = parseInt(clientId);
-    if(isNaN(clientId)) {
-        throw 'clientId invalid';
-    }
-    const clientData = clients.clients.filter(client => client.id === clientId);
+function getClientData(clientTitle) {
+    const clientData = clients.clients.filter(client => client.url === clientTitle);
     if(clientData.length === 0) {
         return {}
     }

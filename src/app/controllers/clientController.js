@@ -7,7 +7,7 @@ function getAll(req, res) {
 
 function getClientData(req, res) {
     try {
-        const client = clientModel.getClientData(req.query.id);
+        const client = clientModel.getClientData(req.query.name);
         return res.status(200).json(client);
     } catch(e) {
         return res.status(400).json({"message":e});
