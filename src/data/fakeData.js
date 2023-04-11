@@ -66,16 +66,16 @@ const products = [
 ];
 
 const options = [
-  { "id": 1, "categoryId": 1, "required": false, "title": "Adicionais", "description": "Selecione adicionais", "optionsList": [
+  { "id": 1, "categoryId": 2, "required": false, "title": "Adicionais", "description": "Selecione adicionais", "optionsList": [
     { "id": 1, "title": "Carne", "price": 4.50 },
     { "id": 2, "title": "Bacon", "price": 4 },
     { "id": 3, "title": "Queijo cheddar", "price": 2 }
   ]},
-  { "id": 2, "categoryId": 2, "required": true, "title": "Tamanho", "description": "Selecione o tamanho", "optionsList": [
+  { "id": 2, "categoryId": 3, "required": true, "title": "Tamanho", "description": "Selecione o tamanho", "optionsList": [
     { "id": 4, "title": "Meia", "price": 17.50 },
     { "id": 5, "title": "Inteira", "price": 28 }
   ]},
-  { "id": 3, "categoryId": 2, "required": false, "title": "Adicionais", "description": "Selecione adicionais", "optionsList": [
+  { "id": 3, "categoryId": 4, "required": false, "title": "Adicionais", "description": "Selecione adicionais", "optionsList": [
     { "id": 6, "title": "Extra queijo", "price": 2 },
     { "id": 7, "title": "Extra bacon", "price": 3.50 },
     { "id": 8, "title": "Extra calabresa", "price": 2.50 },
