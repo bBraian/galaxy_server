@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id         String @id @default(uuid())
+  title      String
+  logo       String
+  background String
+  url        String @unique
+
+  created_at   DateTime @default(now())
+  created_user String
+  changed_at   DateTime @default(now())
+  changed_user String
+
+  @@map("client")
+}
+
+model Categories {
+  id      Int     @id @default(autoincrement())
+  title   String
+  default Boolean
+
+  created_at   DateTime @default(now())
+  created_user String
+  changed_at   DateTime @default(now())
+  changed_user String
+
+  @@map("categories")
+}

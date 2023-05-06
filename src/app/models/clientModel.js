@@ -1,7 +1,13 @@
 const clients = require("../../data/fakeData");
+const { prisma } = require("../../lib/prisma");
 
-function getAll() {
-    return clients.clients;
+async function getAll() {
+    try {
+        const clients = await prisma.client.getAll()
+        return clients
+    } catch (error) {
+        throw error
+    }
 }
 
 function getClientData(clientTitle) {
