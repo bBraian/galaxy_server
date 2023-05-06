@@ -16,7 +16,7 @@ const categories = [
     { "id": 10, "title": "🍷 Vinhos", "clientId": 1, "default": false },
     { "id": 11, "title": "🍸 Drinks", "clientId": 1, "default": false },
     { "id": 12, "title": "Todos", "clientId": 2, "default": true },
-    { "id": 13, "title": "🍔 Hambúrgueres", "clientId": 2, "default": false },
+    { "id": 13, "title": "🍔 Burguers", "clientId": 2, "default": false },
     { "id": 14, "title": "🍕 Pizzas", "clientId": 2, "default": false },
     { "id": 15, "title": "🌭 Lanches", "clientId": 2, "default": false }
 ];
