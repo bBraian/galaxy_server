@@ -1,21 +1,50 @@
 const clients = require("../../data/fakeData");
-const { prisma } = require("../../lib/prisma");
+const prisma = require("../../lib/prisma");
 
 async function getAll() {
     try {
-        const clients = await prisma.client.getAll()
-        return clients
+        const clientsData = await prisma.client.findMany()
+        return clientsData
     } catch (error) {
-        throw error
+        throw new Error(error);
     }
 }
 
-function getClientData(clientTitle) {
-    const clientData = clients.clients.filter(client => client.url === clientTitle);
-    if(clientData.length === 0) {
-        return {}
+async function getClient(clientId) {
+    try {
+        const clientData = await prisma.client.findUnique({
+            where: {
+                id: clientId
+            }
+        })
+        return clientData;
+    } catch (error) {
+        throw new Error(error);
     }
-    return clientData[0];
+}
+
+async function createClient(data) {
+    const { title, logo, background, url, user } = data
+    const clientExists = await prisma.client.findUnique({
+        where: { url }
+    })
+
+    if(clientExists) {
+        throw new Error('Url ja existe!');
+    }
+
+    const client = await prisma.client.create({
+        data: {
+            title,
+            logo,
+            background,
+            url,
+            changed_user: user,
+            created_user: user
+        },
+    })
+
+    return client;
 }
 
 function getClientCategories(clientId) {
@@ -57,7 +86,8 @@ function getOptions(categoryId) {
 
 module.exports = {
     getAll,
-    getClientData,
+    getClient,
+    createClient,
     getClientCategories,
     getClientProducts,
     getOptions
