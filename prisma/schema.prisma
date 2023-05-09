@@ -7,7 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client {
+model Users {
+  id         String @id @default(uuid())
+  clients_id String
+
+  username String
+  email    String
+  password String
+
+  @@map("users")
+}
+
+model Clients {
   id         String @id @default(uuid())
   title      String
   logo       String
@@ -15,22 +26,58 @@ model Client {
   url        String @unique
 
   created_at   DateTime @default(now())
-  created_user String
+  created_user String?
   changed_at   DateTime @default(now())
-  changed_user String
+  changed_user String?
 
-  @@map("client")
+  @@map("clients")
 }
 
 model Categories {
   id      Int     @id @default(autoincrement())
   title   String
-  default Boolean
+  default Boolean @default(false)
+
+  client_id String
 
   created_at   DateTime @default(now())
-  created_user String
+  created_user String?
   changed_at   DateTime @default(now())
-  changed_user String
+  changed_user String?
 
   @@map("categories")
+}
+
+model Products {
+  id            String @id @default(uuid())
+  categories_id String
+
+  image_url        String
+  title            String
+  description      String?
+  price_original   String
+  price_discounted String?
+
+  @@map("products")
+}
+
+model Options {
+  id            Int    @id @default(autoincrement())
+  categories_id String
+
+  required    Boolean
+  title       String
+  description String
+
+  @@map("options")
+}
+
+model OptionsList {
+  id         Int    @id @default(autoincrement())
+  options_id String
+
+  title String
+  price Int
+
+  @@map("options_list")
 }
