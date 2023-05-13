@@ -34,11 +34,10 @@ model Clients {
 }
 
 model Categories {
-  id      Int     @id @default(autoincrement())
-  title   String
-  default Boolean @default(false)
-
+  id        Int    @id @default(autoincrement())
   client_id String
+
+  title String
 
   created_at   DateTime @default(now())
   created_user String?

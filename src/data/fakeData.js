@@ -4,21 +4,19 @@ const clients = [
 ];
 
 const categories = [
-    { "id": 1, "title": "Todos", "clientId": 1, "default": true },
-    { "id": 2, "title": "🍔 Hambúrgueres", "clientId": 1, "default": false },
-    { "id": 3, "title": "🍕 Pizzas", "clientId": 1, "default": false },
-    { "id": 4, "title": "🌭 Lanches", "clientId": 1, "default": false },
-    { "id": 5, "title": "🍟 Fritas", "clientId": 1, "default": false },
-    { "id": 6, "title": "🥗 Porções", "clientId": 1, "default": false },
-    { "id": 7, "title": "🥟 Pasteis", "clientId": 1, "default": false },
-    { "id": 8, "title": "🥤 Bebidas", "clientId": 1, "default": false },
-    { "id": 9, "title": "🍺 Cervejas", "clientId": 1, "default": false },
-    { "id": 10, "title": "🍷 Vinhos", "clientId": 1, "default": false },
-    { "id": 11, "title": "🍸 Drinks", "clientId": 1, "default": false },
-    { "id": 12, "title": "Todos", "clientId": 2, "default": true },
-    { "id": 13, "title": "🍔 Burguers", "clientId": 2, "default": false },
-    { "id": 14, "title": "🍕 Pizzas", "clientId": 2, "default": false },
-    { "id": 15, "title": "🌭 Lanches", "clientId": 2, "default": false }
+    { "id": 1, "clientId": 1, "title": "🍔 Hambúrgueres" },
+    { "id": 2, "clientId": 1, "title": "🍕 Pizzas" },
+    { "id": 3, "clientId": 1, "title": "🌭 Lanches" },
+    { "id": 4, "clientId": 1, "title": "🍟 Fritas" },
+    { "id": 5, "clientId": 1, "title": "🥗 Porções" },
+    { "id": 6, "clientId": 1, "title": "🥟 Pasteis" },
+    { "id": 7, "clientId": 1, "title": "🥤 Bebidas" },
+    { "id": 8, "clientId": 1, "title": "🍺 Cervejas" },
+    { "id": 9, "clientId": 1, "title": "🍷 Vinhos" },
+    { "id": 10, "clientId": 1, "title": "🍸 Drinks" },
+    { "id": 11, "clientId": 2, "title": "🍔 Burguers" },
+    { "id": 12, "clientId": 2, "title": "🍕 Pizzas" },
+    { "id": 13, "clientId": 2, "title": "🌭 Lanches" }
 ];
 
 const products = [
