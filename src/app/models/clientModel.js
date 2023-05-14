@@ -1,31 +1,22 @@
-const clients = require("../../data/fakeData");
 const prisma = require("../../lib/prisma");
 
 async function getAll() {
-    try {
-        const clientsData = await prisma.client.findMany()
-        return clientsData
-    } catch (error) {
-        throw new Error(error);
-    }
+    const clientsData = await prisma.clients.findMany()
+    return clientsData
 }
 
-async function getClient(clientId) {
-    try {
-        const clientData = await prisma.client.findUnique({
-            where: {
-                id: clientId
-            }
-        })
-        return clientData;
-    } catch (error) {
-        throw new Error(error);
-    }
+async function getClient(url) {
+    const clientData = await prisma.clients.findUnique({
+        where: {
+            url: url
+        }
+    })
+    return clientData;
 }
 
 async function createClient(data) {
     const { title, logo, background, url, user } = data
-    const clientExists = await prisma.client.findUnique({
+    const clientExists = await prisma.clients.findUnique({
         where: { url }
     })
 

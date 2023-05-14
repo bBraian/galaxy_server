@@ -2,24 +2,27 @@ const prisma = require("../../lib/prisma");
 const clientModel = require("../models/clientModel");
 const z = require('zod')
 
+// Function to gel all clients data
 async function getAll(req, res) {
     try {
         const clients = await clientModel.getAll();
         return res.status(200).json(clients);
-    } catch (error) {
+    } catch (e) {
         return res.status(400).json({"message":e});
     }
 }
 
+// Function to get one client data by the clientUrl
 async function getClient(req, res) {
     try {
-        const clientData = await clientModel.getClient(req.query.clientId);
+        const clientData = await clientModel.getClient(req.query.clientUrl);
         return res.status(200).json(clientData);
     } catch(e) {
         return res.status(400).json({"message":e});
     }
 }
 
+// Function to create a client
 async function postClient(req, res) {
     const postSchema = z.object({
         title: z.string().min(3).max(20),
