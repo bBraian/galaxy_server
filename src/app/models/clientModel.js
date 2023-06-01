@@ -11,6 +11,22 @@ async function getClient(url) {
             url: url
         }
     })
+
+    const clientCategories = await prisma.categories.findMany({
+        where: {
+            client_id: clientData.id
+        }
+    })
+
+    const clientProducts = await prisma.products.findMany({
+        where: {
+            categories_id: 1
+        }
+    })
+
+    clientData["categories"] = clientCategories;
+    // clientData["products"] = clientProducts;
+
     return clientData;
 }
 
