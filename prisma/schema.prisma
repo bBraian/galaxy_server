@@ -32,14 +32,15 @@ model Clients {
   changed_at   DateTime @default(now())
   changed_user String?
 
-  Users Users[]
+  Users      Users[]
+  Categories Categories[]
 
   @@map("clients")
 }
 
 model Categories {
-  id        Int    @id @default(autoincrement())
-  client_id String
+  id         Int    @id @default(autoincrement())
+  clients_id String
 
   title String
 
@@ -48,12 +49,17 @@ model Categories {
   changed_at   DateTime @default(now())
   changed_user String?
 
+  Products Products[]
+  Options  Options[]
+
+  client Clients @relation(fields: [clients_id], references: [id])
+
   @@map("categories")
 }
 
 model Products {
   id            String @id @default(uuid())
-  categories_id String
+  categories_id Int
 
   image_url        String
   title            String
@@ -61,26 +67,33 @@ model Products {
   price_original   String
   price_discounted String?
 
+  categories Categories @relation(fields: [categories_id], references: [id])
+
   @@map("products")
 }
 
 model Options {
-  id            Int    @id @default(autoincrement())
-  categories_id String
+  id            Int @id @default(autoincrement())
+  categories_id Int
 
   required    Boolean
   title       String
   description String
 
+  categories  Categories    @relation(fields: [categories_id], references: [id])
+  OptionsList OptionsList[]
+
   @@map("options")
 }
 
 model OptionsList {
-  id         Int    @id @default(autoincrement())
-  options_id String
+  id         Int @id @default(autoincrement())
+  options_id Int
 
   title String
   price Int
+
+  options Options @relation(fields: [options_id], references: [id])
 
   @@map("options_list")
 }
