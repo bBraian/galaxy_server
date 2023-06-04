@@ -32,15 +32,15 @@ async function getClient(url) {
 
 async function createClient(data) {
     const { title, logo, background, url, user } = data
-    const clientExists = await prisma.clients.findUnique({
+    const clientUrlExists = await prisma.clients.findUnique({
         where: { url }
     })
 
-    if(clientExists) {
+    if(clientUrlExists) {
         throw new Error('Url ja existe!');
     }
 
-    const client = await prisma.client.create({
+    const client = await prisma.clients.create({
         data: {
             title,
             logo,
@@ -54,11 +54,15 @@ async function createClient(data) {
     return client;
 }
 
+async function getClientById(clientId) {
+    const client = await prisma.clients.findFirstOrThrow({
+        where: clientId
+    })
+
+    return client;
+}
+
 function getClientCategories(clientId) {
-    clientId = parseInt(clientId);
-    if(isNaN(clientId)) {
-        throw 'clientId invalid';
-    }
     const clientCategories = clients.categories.filter(category => category.clientId === clientId);
     if(clientCategories.length === 0) {
         return {}
@@ -97,5 +101,6 @@ module.exports = {
     createClient,
     getClientCategories,
     getClientProducts,
-    getOptions
+    getOptions,
+    getClientById
 }

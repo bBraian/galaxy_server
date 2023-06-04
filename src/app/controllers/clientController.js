@@ -1,4 +1,3 @@
-const prisma = require("../../lib/prisma");
 const clientModel = require("../models/clientModel");
 const z = require('zod')
 
@@ -31,7 +30,6 @@ async function postClient(req, res) {
         url: z.string(),
         user: z.string(),
     })
-      
     try {
         postSchema.parse(req.body)
         const clientData = await clientModel.createClient(req.body);
@@ -39,15 +37,6 @@ async function postClient(req, res) {
     } catch(e) {
         console.log(e)
         return res.status(400).json(e);
-    }
-}
-
-function getClientCategories(req, res) {
-    try {
-        const categories = clientModel.getClientCategories(req.query.clientId);
-        return res.status(200).json(categories);
-    } catch(e) {
-        return res.status(400).json({"message":e});
     }
 }
 
@@ -73,7 +62,6 @@ module.exports = {
     getAll,
     getClient,
     postClient,
-    getClientCategories,
     getClientProducts,
     getOptions
 }

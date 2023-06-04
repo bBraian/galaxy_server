@@ -28,7 +28,7 @@ CREATE TABLE `clients` (
 -- CreateTable
 CREATE TABLE `categories` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `client_id` VARCHAR(191) NOT NULL,
+    `clients_id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `created_user` VARCHAR(191) NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `categories` (
 -- CreateTable
 CREATE TABLE `products` (
     `id` VARCHAR(191) NOT NULL,
-    `categories_id` VARCHAR(191) NOT NULL,
+    `categories_id` INTEGER NOT NULL,
     `image_url` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `products` (
 -- CreateTable
 CREATE TABLE `options` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `categories_id` VARCHAR(191) NOT NULL,
+    `categories_id` INTEGER NOT NULL,
     `required` BOOLEAN NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE `options` (
 -- CreateTable
 CREATE TABLE `options_list` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `options_id` VARCHAR(191) NOT NULL,
+    `options_id` INTEGER NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `price` INTEGER NOT NULL,
 
@@ -74,3 +74,15 @@ CREATE TABLE `options_list` (
 
 -- AddForeignKey
 ALTER TABLE `users` ADD CONSTRAINT `users_clients_id_fkey` FOREIGN KEY (`clients_id`) REFERENCES `clients`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `categories` ADD CONSTRAINT `categories_clients_id_fkey` FOREIGN KEY (`clients_id`) REFERENCES `clients`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `products` ADD CONSTRAINT `products_categories_id_fkey` FOREIGN KEY (`categories_id`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `options` ADD CONSTRAINT `options_categories_id_fkey` FOREIGN KEY (`categories_id`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `options_list` ADD CONSTRAINT `options_list_options_id_fkey` FOREIGN KEY (`options_id`) REFERENCES `options`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
