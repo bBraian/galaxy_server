@@ -3,25 +3,30 @@ const prisma = require("../../lib/prisma");
 async function getCategories(clientId) {
     const categories = await prisma.categories.findMany({
         where: {
-            clients_id: clientId
+            clients_id: parseInt(clientId)
         }
     })
     return categories
 }
 
 async function postCategory(data) {
-    const { clientId, title, user } = data
+    try {
+        const { clientId, title, user } = data
+        const category = await prisma.categories.create({
+            data: {
+                clients_id: parseInt(clientId),
+                title,
+                changed_user: user,
+                created_user: user
+            }
+        })
+    
+        return category;
+    } catch (error) {
+        console.log(error)
+        throw "Erro post category"
+    }
 
-    const category = await prisma.categories.create({
-        data: {
-            clients_id: clientId,
-            title,
-            changed_user: user,
-            created_user: user
-        }
-    })
-
-    return category;
 }
 
 module.exports = {

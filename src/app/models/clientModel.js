@@ -43,11 +43,17 @@ async function createClient(data) {
 }
 
 async function getClientById(clientId) {
-    const client = await prisma.clients.findUnique({
-        where: clientId
-    })
-
-    return client;
+    try {
+        const client = await prisma.clients.findUnique({
+            where: {
+                id: parseInt(clientId)
+            }
+        })
+        return client;
+    } catch (error) {
+        console.log(error)
+        throw "Erro get client by id"
+    }
 }
 
 function getClientCategories(clientId) {
