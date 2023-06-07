@@ -9,23 +9,11 @@ async function getClient(url) {
     const clientData = await prisma.clients.findUnique({
         where: {
             url: url
+        },
+        include: {
+            Categories: true
         }
     })
-
-    const clientCategories = await prisma.categories.findMany({
-        where: {
-            client_id: clientData.id
-        }
-    })
-
-    const clientProducts = await prisma.products.findMany({
-        where: {
-            categories_id: 1
-        }
-    })
-
-    clientData["categories"] = clientCategories;
-    // clientData["products"] = clientProducts;
 
     return clientData;
 }
@@ -39,7 +27,7 @@ async function createClient(data) {
     if(clientUrlExists) {
         throw new Error('Url ja existe!');
     }
-
+    
     const client = await prisma.clients.create({
         data: {
             title,
@@ -55,7 +43,7 @@ async function createClient(data) {
 }
 
 async function getClientById(clientId) {
-    const client = await prisma.clients.findFirstOrThrow({
+    const client = await prisma.clients.findUnique({
         where: clientId
     })
 

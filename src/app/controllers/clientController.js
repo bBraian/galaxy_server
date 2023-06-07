@@ -14,7 +14,7 @@ async function getAll(req, res) {
 // Function to get one client data by the clientUrl
 async function getClient(req, res) {
     try {
-        const clientData = await clientModel.getClient(req.query.clientUrl);
+        const clientData = await clientModel.getClient(req.params.clientUrl);
         return res.status(200).json(clientData);
     } catch(e) {
         return res.status(400).json({"message":e});

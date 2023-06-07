@@ -1,8 +1,12 @@
 const prisma = require("../../lib/prisma");
 
-async function getCategories() {
-    const clientsData = await prisma.clients.findMany()
-    return clientsData
+async function getCategories(clientId) {
+    const categories = await prisma.categories.findMany({
+        where: {
+            clients_id: clientId
+        }
+    })
+    return categories
 }
 
 async function postCategory(data) {

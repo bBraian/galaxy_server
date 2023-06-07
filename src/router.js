@@ -5,11 +5,11 @@ const categoriesController = require("./app/controllers/categoriesController");
 const router = express.Router();
 
 router.get('/clients/all', clientController.getAll);
-router.get('/clients', clientController.getClient);
+router.get('/clients/:clientUrl', clientController.getClient);
 router.post('/clients', clientController.postClient);
 
 
-router.get('/categories', categoriesController.getCategories);
+router.get('/categories/:clientId', categoriesController.getCategories);
 router.post('/categories', categoriesController.createCategory);
 
 

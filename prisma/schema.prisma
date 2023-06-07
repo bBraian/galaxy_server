@@ -8,20 +8,19 @@ datasource db {
 }
 
 model Users {
-  id         String @id @default(uuid())
-  clients_id String
+  id         Int @id @default(autoincrement())
+  clients_id Int
 
   username String
   email    String
   password String
-
-  client Clients @relation(fields: [clients_id], references: [id])
+  Clients  Clients? @relation(fields: [clients_id], references: [id])
 
   @@map("users")
 }
 
 model Clients {
-  id         String @id @default(uuid())
+  id         Int    @id @default(autoincrement())
   title      String
   logo       String
   background String
@@ -39,8 +38,8 @@ model Clients {
 }
 
 model Categories {
-  id         Int    @id @default(autoincrement())
-  clients_id String
+  id         Int @id @default(autoincrement())
+  clients_id Int
 
   title String
 
@@ -51,14 +50,13 @@ model Categories {
 
   Products Products[]
   Options  Options[]
-
-  client Clients @relation(fields: [clients_id], references: [id])
+  Clients  Clients?   @relation(fields: [clients_id], references: [id])
 
   @@map("categories")
 }
 
 model Products {
-  id            String @id @default(uuid())
+  id            Int @id @default(autoincrement())
   categories_id Int
 
   image_url        String
