@@ -1,0 +1,71 @@
+const prisma = require("../../lib/prisma");
+
+async function getProduct(clientId) {
+    const categories = await prisma.categories.findMany({
+        where: {
+            clients_id: parseInt(clientId)
+        }
+    })
+    return categories
+}
+
+async function postProduct(data) {
+    try {
+        const { categories_id, image_url, title, description, price_original, price_discounted } = data
+
+        const product = await prisma.products.create({
+            data: {
+                categories_id: parseInt(categories_id),
+                title,
+                description,
+                image_url,
+                price_original,
+                price_discounted
+            }
+        })
+    
+        return product;
+    } catch (error) {
+        console.log(error)
+        throw "Erro post produto"
+    }
+
+}
+
+async function putProduct(productId, data) {
+    try {
+        const product = await prisma.products.update({
+            data: { data },
+            where: {
+                id: productId
+            }
+        })
+    
+        return product;
+    } catch (error) {
+        console.log(error)
+        throw "Erro put product"
+    }
+}
+
+async function deleteProduct(productId) {
+    try {
+        const product = await prisma.products.delete({
+            where: {
+                id: productId
+            }
+        })
+    
+        return product;
+    } catch (error) {
+        console.log(error)
+        throw "Erro deletar produto"
+    }
+}
+
+module.exports = {
+    getProduct,
+    postProduct,
+    putProduct,
+    deleteProduct
+}
