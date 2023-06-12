@@ -11,7 +11,9 @@ async function getClient(url) {
             url: url
         },
         include: {
-            Categories: true
+            Categories: true,
+            Products: true
+            
         }
     })
 

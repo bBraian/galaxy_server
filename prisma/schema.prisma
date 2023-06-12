@@ -33,6 +33,7 @@ model Clients {
 
   Users      Users[]
   Categories Categories[]
+  Products   Products[]
 
   @@map("clients")
 }
@@ -58,6 +59,7 @@ model Categories {
 model Products {
   id            Int @id @default(autoincrement())
   categories_id Int
+  clients_id    Int
 
   image_url        String
   title            String
@@ -65,7 +67,13 @@ model Products {
   price_original   String
   price_discounted String?
 
+  created_at   DateTime @default(now())
+  created_user String?
+  changed_at   DateTime @default(now())
+  changed_user String?
+
   categories Categories @relation(fields: [categories_id], references: [id])
+  client     Clients    @relation(fields: [clients_id], references: [id])
 
   @@map("products")
 }

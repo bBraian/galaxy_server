@@ -11,16 +11,19 @@ async function getProduct(clientId) {
 
 async function postProduct(data) {
     try {
-        const { categories_id, image_url, title, description, price_original, price_discounted } = data
+        const { categoriesId, clientId, image_url, title, description, price_original, price_discounted, user } = data
 
         const product = await prisma.products.create({
             data: {
-                categories_id: parseInt(categories_id),
+                categories_id: parseInt(categoriesId),
+                clients_id: parseInt(clientId),
                 title,
                 description,
                 image_url,
                 price_original,
-                price_discounted
+                price_discounted,
+                changed_user: user,
+                created_user: user
             }
         })
     

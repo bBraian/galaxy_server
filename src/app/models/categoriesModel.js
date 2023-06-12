@@ -9,6 +9,15 @@ async function getCategories(clientId) {
     return categories
 }
 
+async function getOneCategory(categoryId) {
+    const category = await prisma.categories.findUnique({
+        where: {
+            id: parseInt(categoryId)
+        }
+    })
+    return category
+}
+
 async function postCategory(data) {
     try {
         const { clientId, title, user } = data
@@ -31,5 +40,6 @@ async function postCategory(data) {
 
 module.exports = {
     getCategories,
-    postCategory
+    postCategory,
+    getOneCategory
 }
