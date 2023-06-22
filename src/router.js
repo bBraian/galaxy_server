@@ -17,7 +17,4 @@ router.post('/categories', categoriesController.createCategory);
 router.post('/products', productsController.createProduct);
 
 
-router.get('/options', clientController.getOptions);
-
 module.exports = router;
-

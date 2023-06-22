@@ -36,7 +36,7 @@ async function postClient(req, res) {
         return res.status(200).json(clientData);
     } catch(e) {
         console.log(e)
-        return res.status(400).json(e);
+        return res.status(400).json({"message":e.message});
     }
 }
 
@@ -45,7 +45,7 @@ function getClientProducts(req, res) {
         const products = clientModel.getClientProducts(req.query.clientId);
         return res.status(200).json(products);
     } catch(e) {
-        return res.status(400).json({"message":e});
+        return res.status(400).json({"message":e.message});
     }
 }
 
@@ -54,7 +54,7 @@ function getOptions(req, res) {
         const options = clientModel.getOptions(req.query.categoryId);
         return res.status(200).json(options);
     } catch(e) {
-        return res.status(400).json({"message":e});
+        return res.status(400).json({"message":e.message});
     }
 }
 

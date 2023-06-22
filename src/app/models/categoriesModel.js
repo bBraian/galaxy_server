@@ -9,7 +9,7 @@ async function getCategories(clientId) {
     return categories
 }
 
-async function getOneCategory(categoryId) {
+async function getCategory(categoryId) {
     const category = await prisma.categories.findUnique({
         where: {
             id: parseInt(categoryId)
@@ -41,5 +41,5 @@ async function postCategory(data) {
 module.exports = {
     getCategories,
     postCategory,
-    getOneCategory
+    getCategory
 }
