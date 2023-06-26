@@ -1,6 +1,14 @@
 const clientModel = require("../models/clientModel");
 const z = require('zod')
 
+const clientSchema = z.object({
+    title: z.string().min(3).max(20),
+    logo: z.string(),
+    background: z.string(),
+    url: z.string(),
+    user: z.string(),
+})
+
 // Function to gel all clients data
 async function getAll(req, res) {
     try {
@@ -23,15 +31,8 @@ async function getClient(req, res) {
 
 // Function to create a client
 async function postClient(req, res) {
-    const postSchema = z.object({
-        title: z.string().min(3).max(20),
-        logo: z.string(),
-        background: z.string(),
-        url: z.string(),
-        user: z.string(),
-    })
     try {
-        postSchema.parse(req.body)
+        clientSchema.parse(req.body)
         const clientData = await clientModel.createClient(req.body);
         return res.status(200).json(clientData);
     } catch(e) {
@@ -40,20 +41,14 @@ async function postClient(req, res) {
     }
 }
 
-function getClientProducts(req, res) {
+// Function to update client
+async function putClient(req, res) {
     try {
-        const products = clientModel.getClientProducts(req.query.clientId);
-        return res.status(200).json(products);
+        clientSchema.parse(req.body)
+        const clientData = await clientModel.updateClient(req.params.clientId, req.body);
+        return res.status(200).json(clientData);
     } catch(e) {
-        return res.status(400).json({"message":e.message});
-    }
-}
-
-function getOptions(req, res) {
-    try {
-        const options = clientModel.getOptions(req.query.categoryId);
-        return res.status(200).json(options);
-    } catch(e) {
+        console.log(e)
         return res.status(400).json({"message":e.message});
     }
 }
@@ -62,6 +57,5 @@ module.exports = {
     getAll,
     getClient,
     postClient,
-    getClientProducts,
-    getOptions
+    putClient
 }

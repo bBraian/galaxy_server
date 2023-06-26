@@ -20,8 +20,8 @@ async function postProduct(data) {
                 title,
                 description,
                 image_url,
-                price_original,
-                price_discounted,
+                price_original: parseFloat(price_original),
+                price_discounted: parseFloat(price_discounted),
                 changed_user: user,
                 created_user: user
             }

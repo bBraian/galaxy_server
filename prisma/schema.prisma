@@ -64,13 +64,13 @@ model Products {
   image_url        String
   title            String
   description      String?
-  price_original   String
-  price_discounted String?
+  price_original   Decimal  @db.Decimal(10, 2)
+  price_discounted Decimal? @db.Decimal(10, 2)
 
-  created_at   DateTime @default(now())
+  created_at   DateTime? @default(now())
   created_user String?
-  changed_at   DateTime @default(now())
-  changed_user String?
+  changed_at   DateTime  @default(now())
+  changed_user String
 
   categories Categories @relation(fields: [categories_id], references: [id])
   client     Clients    @relation(fields: [clients_id], references: [id])

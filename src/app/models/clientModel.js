@@ -49,6 +49,29 @@ async function createClient(data) {
     return client;
 }
 
+async function updateClient(id, data) {
+    const user = data.user
+    delete data.user
+
+    const clientExists = await prisma.clients.findUnique({
+        where: { id: parseInt(id) }
+    })
+
+    if(!clientExists) {
+        throw new Error('Cliente nao encontrado!');
+    }
+
+    const client = await prisma.clients.update({
+        where: { id: parseInt(id) },
+        data: {
+            ...data,
+            changed_user: user,
+        }
+    })
+
+    return client;
+}
+
 async function getClientById(clientId) {
     try {
         const client = await prisma.clients.findUnique({
@@ -67,5 +90,6 @@ module.exports = {
     getAll,
     getClient,
     createClient,
-    getClientById
+    getClientById,
+    updateClient
 }

@@ -3,7 +3,6 @@ const clientModel = require("../models/clientModel");
 const categoriesModel = require("../models/categoriesModel");
 const { z } = require("zod");
 
-
 // Function to create product
 async function createProduct(req, res) {
     const postSchema = z.object({
@@ -12,8 +11,8 @@ async function createProduct(req, res) {
         image_url: z.string(),
         title: z.string(),
         description: z.string().nullable(),
-        price_original: z.string(),
-        price_discounted: z.string().optional(),
+        price_original: z.number(),
+        price_discounted: z.number().optional(),
         user: z.string()
     })
     try {
