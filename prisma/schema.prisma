@@ -8,15 +8,23 @@ datasource db {
 }
 
 model Users {
-  id         Int @id @default(autoincrement())
-  clients_id Int
+  id Int @id @default(autoincrement())
 
-  username String
-  email    String
-  password String
-  Clients  Clients? @relation(fields: [clients_id], references: [id])
+  username    String
+  email       String
+  password    String
+  UserClients UserClients[]
 
   @@map("users")
+}
+
+model UserClients {
+  id         Int @id @default(autoincrement())
+  users_id   Int
+  clients_id Int
+
+  Users   Users   @relation(fields: [users_id], references: [id])
+  Clients Clients @relation(fields: [clients_id], references: [id])
 }
 
 model Clients {
@@ -31,9 +39,9 @@ model Clients {
   changed_at   DateTime @default(now())
   changed_user String?
 
-  Users      Users[]
-  Categories Categories[]
-  Products   Products[]
+  Categories  Categories[]
+  Products    Products[]
+  UserClients UserClients[]
 
   @@map("clients")
 }

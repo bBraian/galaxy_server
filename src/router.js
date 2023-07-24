@@ -1,6 +1,7 @@
 const express = require("express");
 const clientController = require("./app/controllers/clientController");
 const categoriesController = require("./app/controllers/categoriesController");
+const usersController = require("./app/controllers/usersController");
 const productsController = require("./app/controllers/productsController");
 
 const router = express.Router();
@@ -13,6 +14,9 @@ router.post('/clients', clientController.postClient);
 
 router.get('/categories/:clientId', categoriesController.getCategories);
 router.post('/categories', categoriesController.createCategory);
+
+
+router.post('/users', usersController.createUser);
 
 
 router.post('/products', productsController.createProduct);
