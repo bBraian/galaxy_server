@@ -17,6 +17,7 @@ router.post('/categories', categoriesController.createCategory);
 
 
 router.post('/users', usersController.createUser);
+router.post('/users/auth', usersController.authUser);
 
 
 router.post('/products', productsController.createProduct);
