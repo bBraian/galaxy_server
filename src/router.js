@@ -16,7 +16,7 @@ router.get('/categories/:clientId', categoriesController.getCategories);
 router.post('/categories', categoriesController.createCategory);
 
 
-router.post('/users', usersController.createUser);
+router.post('/register/users', usersController.createUser);
 router.post('/users/auth', usersController.authUser);
 
 
